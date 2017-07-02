@@ -42,7 +42,7 @@ app.use(session({
 	saveUninitialized:true
 }));
 app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.session());
 
 app.get("/", function(req,res){
   res.sendFile(__dirname + "/build/index.html");

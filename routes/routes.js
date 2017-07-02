@@ -1,5 +1,6 @@
 const Driver = require("../models/driver");
 const Rider = require("../models/rider");
+const User = require("../models/user");
 
 var googleMapsClient = require('@google/maps').createClient({
   key: 'AIzaSyBZeGnQib45X2ryo_CNyAWMG0d6cM8H4hs'
@@ -21,6 +22,7 @@ module.exports = function(app){
   app.post("/driver", function(req, res){
     console.log("=====Printing the req.body of Driver======");
     console.log(req.body);
+    var email = req.body.email;
 
       googleMapsClient.geocode({
         address: req.body.driverFrom
@@ -44,29 +46,42 @@ module.exports = function(app){
                 driverToLng = response.json.results[0].geometry.location.lng
               }
 
-              var newDriver = new Driver({
-                // driverName:req.body.name,
-                driverFrom:req.body.driverFrom,
-                driverFromGeometry: {
-                  type:"Point",
-                  coordinates:[driverFromLng, driverFromLat]
-                },
-                driverTo:req.body.driverTo,
-                driverToGeometry: {
-                  type:"Point",
-                  coordinates:[driverToLng, driverToLat]
-                }
-              });
-              console.log("===New Driver Details===");
-              console.log(newDriver);
-
-              newDriver.save(function(err, doc){
+              User.findOne({"email": email})
+              .exec(function(err,doc){
                 if(err)
-                  console.log("Error: " + err);
+                  console.log(err);
                 else {
-                  res.send("Saved the driver");
+                  console.log("User found: " + doc);
+
+                  var newDriver = new Driver({
+                    driverName:doc.name,
+                    driverEmail:doc.email,
+                    driverPhoneNo: doc.phoneNo,
+                    driverFrom:req.body.driverFrom,
+                    driverFromGeometry: {
+                      type:"Point",
+                      coordinates:[driverFromLng, driverFromLat]
+                    },
+                    driverTo:req.body.driverTo,
+                    driverToGeometry: {
+                      type:"Point",
+                      coordinates:[driverToLng, driverToLat]
+                    }
+                  });
+                  console.log("===New Driver Details===");
+                  console.log(newDriver);
+
+                  newDriver.save(function(err, doc){
+                    if(err)
+                      console.log("Error: " + err);
+                    else {
+                      res.send("Saved the driver");
+                    }
+                  });
                 }
               });
+
+
           });
       });
   });
@@ -123,10 +138,9 @@ module.exports = function(app){
                     }
                     else{
                       console.log(doc);
-                      res.send(doc);
+                      res.send(doc);        
                     }
                   });
-                  // res.send("Saved the rider");
                 }
               });
           });

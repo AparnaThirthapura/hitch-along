@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
 
 import Login from './Login';
 import Signup from './Signup';
 import UserHomePage from './UserHomePage';
 import DriverPage from './DriverPage';
+import DriverResultPage from './DriverResultPage';
 import RiderPage from './RiderPage';
 
 class HomePage extends Component {
@@ -65,6 +64,15 @@ class HomePage extends Component {
                  });
   }
 
+  showDriverResultPage(){
+    var screen = [];
+    screen.push(<DriverResultPage parentContext={this}/>);
+      this.setState({
+                    screen:screen,
+                    page:'driverResult'
+      });
+  }
+
   showRiderPage(email){
     // console.log("--Inside RiderPage function--" + email);
     var screen = [];
@@ -84,9 +92,5 @@ class HomePage extends Component {
     );
   }
 }
-
-const style = {
-  margin: 15,
-};
 
 export default HomePage;

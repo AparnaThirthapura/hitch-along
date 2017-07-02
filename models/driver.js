@@ -1,21 +1,15 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-// const PointSchema = new Schema({
-//   type:{
-//     type:String,
-//     default:"Point"
-//   },
-//   coordinates:{
-//     type: [Number],
-//     index:"2dsphere"
-//   }
-// });
-
 var DriverSchema = new Schema({
-  driverName:{
-    type:Schema.Types.ObjectId,
-    ref:"User"
+  driverName: {
+    type: String
+  },
+  driverEmail: {
+    type: String
+  },
+  driverPhoneNo: {
+    type: String
   },
   driverFrom:{
     type:String,

@@ -107,12 +107,16 @@ module.exports = function(passport){
   });
 
   passport.deserializeUser(function(id, done) {
-    User.findById(id).then(function(user) {
+    User.findById(id)
+    .then(function(user) {
         if (user) {
             done(null, user.get());
         } else {
             done(user.errors, null);
         }
+    })
+    .catch(function(err) {
+      console.log(err);
     });
   });
 }

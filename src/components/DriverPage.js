@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -21,6 +20,7 @@ class DriverPage extends Component {
     .then((result) => {
       console.log(result);
     });
+    this.props.parentContext.showDriverResultPage();
   }
 
   render(){
@@ -56,6 +56,7 @@ class DriverPage extends Component {
              style={style}
              onClick={(event) => this.handleClick(event)}
            />
+
           </div>
          </MuiThemeProvider>
       </div>

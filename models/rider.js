@@ -1,30 +1,48 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-const PointSchema = new Schema({
-  type:{
-    type:String,
-    default:"Point"
-  },
-  coordinates:{
-    type: [Number],
-    index:"2dsphere"
-  }
-});
+// const PointSchema = new Schema({
+//   type:{
+//     type:String,
+//     default:"Point"
+//   },
+//   coordinates:{
+//     type: [Number],
+//     index:"2dsphere"
+//   }
+// });
 
 var RiderSchema = new Schema({
-  riderName:{
+  riderId:{
     type:Schema.Types.ObjectId,
     ref:"User"
   },
   riderFrom:{
     type:String,
   },
-  riderFromGeometry:PointSchema,
+  riderFromGeometry:{
+    type:{
+      type:String,
+      default:"Point"
+    },
+    coordinates:{
+      type: [Number],
+      index:"2dsphere"
+    }
+  },
   riderTo:{
     type:String,
   },
-  riderToGeometry:PointSchema
+  riderToGeometry:{
+    type:{
+      type:String,
+      default:"Point"
+    },
+    coordinates:{
+      type: [Number],
+      index:"2dsphere"
+    }
+  }
 });
 
 var Rider = mongoose.model("Rider", RiderSchema);
