@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import helpers from '../utils/helpers';
 
 class Signup extends Component {
   constructor(props){
@@ -14,32 +14,13 @@ class Signup extends Component {
       password:'',
       phoneNo: ''
     }
-
   }
 
   handleClick(event){
-    var apiBaseUrl = "http://localhost:3000";
-    console.log("values",this.state.name,this.state.email,this.state.password);
-    //To be done:check for empty values before hitting submit
-    var payload={
-      "name": this.state.name,
-      "email":this.state.email,
-      "password":this.state.password,
-      "phoneNo":this.state.phoneNo
-    };
-    console.log(payload);
-
-    var self = this;
-
-    axios.post(apiBaseUrl + '/signup', payload)
-    .then(function (response) {
-        console.log("Response from signup: " + response.data);
-        if (response.status === 200) {
-          self.props.parentContext.showUserHomePage(response.data.email);
-        }
-    })
-    .catch(function (error) {
-        console.log("Error from signup: " + error);
+    helpers.verifyAndSaveUser(this.state.name, this.state.email, this.state.password, this.state.phoneNo)
+    .then((result) => {
+      console.log(result);
+      this.props.parentContext.showUserHomePage(result.data.email);
     });
   }
 

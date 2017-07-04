@@ -51,6 +51,7 @@ app.get("/", function(req,res){
 require("./auth/passport/passport.js")(passport);
 require("./routes/authRoutes.js")(app, passport);
 require("./routes/routes.js")(app);
+require("./routes/messageRoutes.js")(app);
 
 app.listen(port, function(){
   console.log("Server running on port:" + port);

@@ -6,6 +6,7 @@ import UserHomePage from './UserHomePage';
 import DriverPage from './DriverPage';
 import DriverResultPage from './DriverResultPage';
 import RiderPage from './RiderPage';
+import RiderResultPage from './RiderResultPage';
 
 class HomePage extends Component {
   constructor(props){
@@ -81,6 +82,15 @@ class HomePage extends Component {
                    screen:screen,
                    page:'rider'
                  });
+  }
+
+  showRiderResultPage(result, riderEmail){
+    var screen = [];
+    screen.push(<RiderResultPage parentContext={this} riderEmail={riderEmail} result={result}/>);
+      this.setState({
+                    screen:screen,
+                    page:'riderResult'
+      });
   }
 
   render() {

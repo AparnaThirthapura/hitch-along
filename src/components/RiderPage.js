@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import helpers from '../utils/helpers';
 
 class RiderPage extends Component {
   constructor(props){
@@ -15,8 +15,12 @@ class RiderPage extends Component {
   }
 
   handleClick(event){
-    var apiBaseUrl = "http://localhost:3000";
-    console.log("values",this.state.riderFrom,this.state.riderTo, this.props.email);
+
+    helpers.saveRiderInfo(this.props.email, this.state.riderFrom, this.state.riderTo)
+    .then((result) => {
+      console.log(result);
+      this.props.parentContext.showRiderResultPage(result, this.props.email);
+    });
   }
 
   render(){
@@ -26,7 +30,7 @@ class RiderPage extends Component {
           <div>
           <AppBar
             className
-             title="Please enter your driving details"
+             title="Please enter your riding details"
            />
 
            <br/>
