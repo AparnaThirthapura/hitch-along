@@ -4,6 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import helpers from '../utils/helpers';
+import validator from 'validator';
 
 class Login extends Component {
   constructor(props) {
@@ -15,6 +16,19 @@ class Login extends Component {
   }
 
   handleClick(event){
+
+    if(validator.isEmpty(this.state.email) || 
+       validator.isEmpty(this.state.password)) {
+
+      alert("All fields are required.");
+      return;
+    }
+
+    if (!validator.isEmail(this.state.email)) {
+      alert("Please enter a valid email address");
+      return;
+    }
+
     helpers.verifyUser(this.state.email, this.state.password)
     .then((result) => {
       console.log(result);
@@ -28,10 +42,11 @@ class Login extends Component {
         <MuiThemeProvider>
           <div>
             <AppBar
-              title="GoCarr !!! Login"
+              title="GoCarr Login"
             />
 
             <TextField
+              type="email"
               hintText="Enter your Email"
               floatingLabelText="Email"
               onChange={(event, newValue) => this.setState({email:newValue})}

@@ -8,6 +8,7 @@ var helpers = {
       "email":email,
       "password":password
     };
+
     return axios.post(apiBaseUrl+"/login", payload);
   },
 
@@ -19,6 +20,7 @@ var helpers = {
       "password":password,
       "phoneNo":phoneNo
     };
+
     return axios.post(apiBaseUrl+"/signup", payload);
   },
 

@@ -12,6 +12,7 @@ module.exports = function(app, passport){
 
   app.post("/signup", passport.authenticate("local-signup"), function(req, res){
     console.log("sending..." + req.body);
+    console.log("Result: " + res);
     res.send(req.body);
   });
 
