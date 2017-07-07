@@ -1,5 +1,5 @@
 var axios = require('axios');
-var apiBaseUrl = "http://localhost:3000";
+var apiBaseUrl = "https://localhost:3000";
 
 var helpers = {
   verifyUser: function(email, password){
