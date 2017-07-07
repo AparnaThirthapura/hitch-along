@@ -1,5 +1,5 @@
 var axios = require('axios');
-var apiBaseUrl = "https://localhost:3000";
+// var apiBaseUrl = "https://localhost:3000";
 
 var helpers = {
   verifyUser: function(email, password){
@@ -9,7 +9,7 @@ var helpers = {
       "password":password
     };
 
-    return axios.post(apiBaseUrl+"/login", payload);
+    return axios.post("/login", payload);
   },
 
   verifyAndSaveUser: function(name, email, password, phoneNo){
@@ -21,7 +21,7 @@ var helpers = {
       "phoneNo":phoneNo
     };
 
-    return axios.post(apiBaseUrl+"/signup", payload);
+    return axios.post("/signup", payload);
   },
 
   saveDriverInfo: function(email, driverFrom, driverTo){
@@ -32,7 +32,7 @@ var helpers = {
       "driverTo":driverTo
     };
     console.log(payload);
-    return axios.post(apiBaseUrl+"/driver", payload);
+    return axios.post("/driver", payload);
   },
 
   saveRiderInfo: function(email, riderFrom, riderTo){
@@ -43,7 +43,7 @@ var helpers = {
       "riderTo":riderTo
     };
     console.log(payload);
-    return axios.post(apiBaseUrl+"/rider", payload);
+    return axios.post("/rider", payload);
   },
 
   sendText: function(phoneNo, riderEmail){
@@ -53,12 +53,12 @@ var helpers = {
       "riderEmail": riderEmail
     };
     console.log(payload);
-    return axios.post(apiBaseUrl+"/sendtext", payload)
+    return axios.post("/sendtext", payload)
   },
 
   logoutUser: function() {
     console.log("--Inside logout function--");
-    return axios.get(apiBaseUrl+"/logout");
+    return axios.get("/logout");
   }
 
 }
