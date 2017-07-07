@@ -2,6 +2,7 @@ var axios = require('axios');
 var apiBaseUrl = "http://localhost:3000";
 
 var helpers = {
+
   verifyUser: function(email, password){
     console.log("--Inside verifyUser function--");
     var payload = {
@@ -9,7 +10,7 @@ var helpers = {
       "password":password
     };
 
-    return axios.post(apiBaseUrl+"/login", payload);
+    return axios.post(apiBaseUrl+"/login", payload);  
   },
 
   verifyAndSaveUser: function(name, email, password, phoneNo){

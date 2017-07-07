@@ -31,8 +31,15 @@ class Login extends Component {
 
     helpers.verifyUser(this.state.email, this.state.password)
     .then((result) => {
-      console.log(result);
-      this.props.parentContext.showUserHomePage(result.data.email);
+      console.log("Printing the result after login  " + result);
+      
+      if(result === undefined){
+        alert("Failed Login");
+        this.props.parentContext.showLoginPage()
+      }
+      else{
+        this.props.parentContext.showUserHomePage(result.data.email);
+      }
     });
   }
 

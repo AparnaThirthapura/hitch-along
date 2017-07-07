@@ -14,7 +14,7 @@ class App extends Component {
           <HomePage />
         </div>
         <div className="App-footer">
-          <h3>By Aparna for Rutgers Coding Bootcamp</h3>
+          <h4>By Aparna for Rutgers Coding Bootcamp</h4>
         </div>
       </div>
     )

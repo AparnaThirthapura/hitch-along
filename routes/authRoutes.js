@@ -16,26 +16,4 @@ module.exports = function(app, passport){
     res.send(req.body);
   });
 
-  // app.get("/homepage", isLoggedIn, function(req, res){
-	// 	db.User.findAll({
-	// 		where:{name:req.user.name}
-	// 	}).then(function(dbUser){
-	// 		res.send("Welcome to GoCarr. Are you Driving or Riding Today");
-	// 	});
-	// });
-
-  app.get("/homepage", function(req, res){
-    res.send("This will be the main page");
-  });
-
-  app.get("/logout", function(req, res) {
-    res.redirect('/');
-	});
-
-  // function isLoggedIn(req, res, next) {
-  //   if (req.isAuthenticated())
-  //     return next();
-  //   // res.redirect("/signin");
-  //     res.send("Authentication Failed");
-  // }
 };

@@ -13,24 +13,25 @@ module.exports = function(passport){
         passReqToCallback: true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done){
-      console.log("+++Inside the passport function+++");
+      console.log("+++Inside the passport signup function+++");
       console.log(req.body);
 
       var generateHash = function(password) {
       return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
-      };
+    };
+    
       User.findOne({
         "email": email
       }).then(function(user) {
           if (user)
             {
+                console.log("++Email already taken++");
                 return done(null, false, {
                   message: 'That email is already taken'
                 });
             } else
             {
                 console.log("+++Creating a new user+++");
-
                 var userPassword = generateHash(password);
                 var data =
                 {
@@ -63,7 +64,8 @@ module.exports = function(passport){
           passReqToCallback: true // allows us to pass back the entire request to the callback
       },
       function(req, email, password, done) {
-          console.log("Validating: " + email + " " + password);
+        console.log("+++Inside the passport login function+++");
+        console.log("Validating: " + email + " " + password);
 
           var isValidPassword = function(userpass, password) {
               return bCrypt.compareSync(password, userpass);
@@ -71,29 +73,27 @@ module.exports = function(passport){
 
           User.findOne({
             "email": email
-          }).then(function(dbUser) {
-              console.log("inside findOne DB function" + dbUser);
-            //  console.log("email: " + dbUser.email);
-            //  console.log("password: " + dbUser.password);
-
+          })
+          .then(function(dbUser) {
+              console.log("++Inside findOne DB function++" + dbUser);
+            
               if (!dbUser) {
-                  return done(null, false, {
-                      message: 'Email does not exist'
-                  });
+                console.log("Email does not exist");
+                return done(null, false, {
+                    message: 'Email does not exist'
+                });
               }
               if (!isValidPassword(dbUser.password, password)) {
-                  return done(null, false, {
-                      message: 'Incorrect password.'
-                  });
+                console.log("Password does not match");
+                return done(null, false, {
+                    message: 'Incorrect password.'
+                });
               }
 
               console.log("Authentication successful.");
-              // var userinfo = dbUser.get();
-
-              //use session here to store the user information
-              //app.getSession to get
               return done(null, dbUser);
-          }).catch(function(err) {
+          })
+          .catch(function(err) {
               console.log("Error while login:", err);
               return done(null, false, {
                   message: 'Something went wrong with your Signin'

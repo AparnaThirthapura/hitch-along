@@ -5,12 +5,12 @@ var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
 
 module.exports = function(app){
+
   app.post("/sendtext", function(req, res){
 
     var ph = '+1' + req.body.phoneNo;
     var riderEmail = req.body.riderEmail;
     console.log("Sending to: " + ph);
-
 
     var payload = {
         body: 'Hello!' + riderEmail + ' would like to ride with you',
@@ -24,7 +24,6 @@ module.exports = function(app){
         res.send(message.sid);
       }
     );
-
-
   });
+  
 }
