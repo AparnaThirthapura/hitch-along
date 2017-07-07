@@ -54,6 +54,11 @@ var helpers = {
     };
     console.log(payload);
     return axios.post(apiBaseUrl+"/sendtext", payload)
+  },
+
+  logoutUser: function() {
+    console.log("--Inside logout function--");
+    return axios.get(apiBaseUrl+"/logout");
   }
 
 }

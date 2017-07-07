@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
+
 
 class DriverResultPage extends Component {
 
@@ -10,9 +12,15 @@ class DriverResultPage extends Component {
       <div>
         <MuiThemeProvider>
           <div>
+          
           <AppBar
              title="Thank you"
-           />
+             iconElementRight={
+               <FlatButton 
+                label="Log out" 
+                onClick={(event) => this.props.parentContext.showLoginPage()}
+               />}
+           />           
            <br/>
 
            <div>

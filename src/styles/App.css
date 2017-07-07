@@ -1,24 +1,27 @@
 .App {
   text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 .App-header {
   background-color: #278d95;
-  height: 150px;
   padding: 10px;
   color: white;
+  flex: 1 0 auto;
 }
 
 .App-intro {
   font-size: large;
+  flex: 10 0 auto;
 }
 
 .App-footer {
   background-color: #278d95;
-  height: 100px;
   padding: 10px;
   color: white;
-  margin-bottom: 10px;
+  height: 7vh;
 }
 
 .form-holder {

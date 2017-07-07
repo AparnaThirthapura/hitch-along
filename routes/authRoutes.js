@@ -29,10 +29,7 @@ module.exports = function(app, passport){
   });
 
   app.get("/logout", function(req, res) {
-	    req.session.destroy(function(err) {
-        res.send("logged Out");
-	        // res.redirect('/');
-	    });
+    res.redirect('/');
 	});
 
   // function isLoggedIn(req, res, next) {

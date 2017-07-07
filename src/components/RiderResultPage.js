@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
 import {
   Table,
   TableBody,
-  TableHeader,
-  TableHeaderColumn,
   TableRow,
   TableRowColumn
 } from 'material-ui/Table';
+
 import helpers from '../utils/helpers';
 
 class RiderResultPage extends Component {
@@ -29,8 +29,6 @@ class RiderResultPage extends Component {
 
   render(){
 
-    var driverName = this.props.result.data[0].driverName;
-
     var rows = [];
 
     {this.props.result.data.map((driver, index) => {
@@ -44,13 +42,25 @@ class RiderResultPage extends Component {
            </TableRow>);
       })}
 
+    if(rows.length === 0) {
+      rows.push(<TableRow key='1'>
+        <TableRowColumn>No drivers found for your route. Please check back later.</TableRowColumn>
+        </TableRow>);
+    }
+
     return(
       <div>
         <MuiThemeProvider>
           <div>
+          
           <AppBar
-             title="Thank you"
-           />
+             title="Thank You"
+             iconElementRight={
+               <FlatButton 
+                label="Log out" 
+                onClick={(event) => this.props.parentContext.showLoginPage()}
+               />}
+           />           
            <br/>
 
            <div>

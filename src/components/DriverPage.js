@@ -3,8 +3,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import helpers from '../utils/helpers';
+import FlatButton from 'material-ui/FlatButton';
 
+import helpers from '../utils/helpers';
 
 class DriverPage extends Component {
   constructor(props){
@@ -28,9 +29,14 @@ class DriverPage extends Component {
       <div>
         <MuiThemeProvider>
           <div>
+
           <AppBar
-            className
              title="Please enter your driving details"
+             iconElementRight={
+               <FlatButton 
+                label="Log out" 
+                onClick={(event) => this.props.parentContext.showLoginPage()}
+               />}
            />
 
            <br/>
