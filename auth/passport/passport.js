@@ -13,7 +13,7 @@ module.exports = function(passport){
         passReqToCallback: true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done){
-      console.log("+++Inside the passport function+++");
+      console.log(" +++Inside the passport signup function+++ ");
       console.log(req.body);
 
       var generateHash = function(password) {
@@ -24,12 +24,13 @@ module.exports = function(passport){
       }).then(function(user) {
           if (user)
             {
+                console.log(" That email is already taken ");
                 return done(null, false, {
                   message: 'That email is already taken'
                 });
             } else
             {
-                console.log("+++Creating a new user+++");
+                console.log(" Creating a new user ");
 
                 var userPassword = generateHash(password);
                 var data =
@@ -63,7 +64,8 @@ module.exports = function(passport){
           passReqToCallback: true // allows us to pass back the entire request to the callback
       },
       function(req, email, password, done) {
-          console.log("Validating: " + email + " " + password);
+         console.log(" +++Inside the passport login function+++ ");
+         console.log(" Validating: " + email + " " + password);
 
           var isValidPassword = function(userpass, password) {
               return bCrypt.compareSync(password, userpass);
@@ -72,9 +74,8 @@ module.exports = function(passport){
           User.findOne({
             "email": email
           }).then(function(dbUser) {
-              console.log("inside findOne DB function" + dbUser);
-            //  console.log("email: " + dbUser.email);
-            //  console.log("password: " + dbUser.password);
+              console.log(" Inside findOne DB function " + dbUser);
+            
 
               if (!dbUser) {
                   return done(null, false, {
@@ -87,11 +88,8 @@ module.exports = function(passport){
                   });
               }
 
-              console.log("Authentication successful.");
-              // var userinfo = dbUser.get();
-
-              //use session here to store the user information
-              //app.getSession to get
+              console.log(" Authentication successful ");
+              
               return done(null, dbUser);
           }).catch(function(err) {
               console.log("Error while login:", err);

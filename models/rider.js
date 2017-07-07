@@ -1,17 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-// const PointSchema = new Schema({
-//   type:{
-//     type:String,
-//     default:"Point"
-//   },
-//   coordinates:{
-//     type: [Number],
-//     index:"2dsphere"
-//   }
-// });
-
 var RiderSchema = new Schema({
   riderId:{
     type:Schema.Types.ObjectId,

@@ -132,13 +132,21 @@ module.exports = function(app){
                   console.log("Error: " + err);
                 else {
 
-                  Driver.find({driverFromGeometry: { $near: {$geometry: { type: "Point",  coordinates: [ riderFromLng, riderFromLat ] }, $minDistance: 0,$maxDistance: 1000}}}, function(err,doc){
-                    if(err){
-                      console.log("Cannot locate drivers");
+                  Driver.find({driverFromGeometry: { $near: {$geometry: { type: "Point",  coordinates: [ riderFromLng, riderFromLat ] }, $minDistance: 0,$maxDistance: 1000}}}, function(errFrom,docFrom){
+                    if(errFrom){
+                      console.log("Cannot locate drivers going from here");
                     }
                     else{
-                      console.log(doc);
-                      res.send(doc);        
+                      console.log(docFrom);
+                      Driver.find({driverToGeometry: { $near: {$geometry: { type: "Point",  coordinates: [ riderToLng, riderToLat ] }, $minDistance: 0,$maxDistance: 1000}}}, function(errTo,docTo){
+                        if(errTo){
+                          console.log("Cannot locate drivers going to here");
+                        }
+                        else{
+                          console.log(docTo);
+                          res.send(docTo);        
+                        }
+                       });
                     }
                   });
                 }
