@@ -26,7 +26,7 @@ class UserHomePage extends Component {
                />}
            />
 
-           Hi {this.props.email}. What do you want to do today?<br/><br/>
+           Hi {this.props.email}  What do you want to do today?<br/><br/>
 
            <RaisedButton label="I am Driving"
              primary={true}

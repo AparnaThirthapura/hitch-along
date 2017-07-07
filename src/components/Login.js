@@ -42,7 +42,7 @@ class Login extends Component {
         <MuiThemeProvider>
           <div>
             <AppBar
-              title="GoCarr Login"
+              title="Hitch-Along Login"
             />
 
             <TextField
@@ -74,7 +74,12 @@ class Login extends Component {
               Not signedup yet? Signup Now
               <MuiThemeProvider>
                 <div>
-                   <RaisedButton label='Signup' primary={true} style={style} onClick={(event) => this.props.parentContext.showSignupPage()}/>
+                   <RaisedButton 
+                    label='Signup' 
+                    primary={true} 
+                    style={style} 
+                    onClick={(event) => this.props.parentContext.showSignupPage()}
+                    />
                </div>
               </MuiThemeProvider>
             </div>
@@ -87,7 +92,7 @@ class Login extends Component {
 }
 
 const style = {
-  margin:15
+  margin: 15
 };
 
 export default Login;

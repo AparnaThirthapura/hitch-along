@@ -50,7 +50,7 @@ class Signup extends Component {
         <MuiThemeProvider>
           <div>
           <AppBar
-             title="GoCarr Signup"
+             title="Hitch-Along Signup"
            />
 
            <br/>
