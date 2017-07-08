@@ -36,6 +36,8 @@ db.once("open", function(){
   console.log("Mongoose connection successful");
 });
 
+app.use(express.static(__dirname + '/'));
+
 app.use(session({
 	secret:"keyboard cat",
 	resave:true,
@@ -47,7 +49,6 @@ app.use(passport.initialize());
 app.get("/", function(req,res){
   res.sendFile(__dirname + "/build/index.html");
 });
-app.use(express.static(__dirname + '/'));
 
 require("./auth/passport/passport.js")(passport);
 require("./routes/authRoutes.js")(app, passport);
