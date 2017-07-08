@@ -36,7 +36,7 @@ db.once("open", function(){
   console.log("Mongoose connection successful");
 });
 
-app.use(express.static(__dirname + '/'));
+// app.use(express.static(__dirname + '/'));
 
 app.use(session({
 	secret:"keyboard cat",
@@ -46,8 +46,9 @@ app.use(session({
 app.use(passport.initialize());
 //app.use(passport.session());
 
-app.get("/", function(req,res){
-  res.sendFile(__dirname + "/build/index.html");
+app.get("/*", function(req,res){
+  res.sendFile( path.join(__dirname, "build", "index.html"));
+  return;
 });
 
 require("./auth/passport/passport.js")(passport);
@@ -60,3 +61,4 @@ app.listen(port, function(){
 });
 
 // Google Maps Api Key: "AIzaSyBZeGnQib45X2ryo_CNyAWMG0d6cM8H4hs"
+module.exports = app;
