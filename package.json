@@ -68,7 +68,8 @@
     "start-dev": "nodemon --exec ./start-dev.sh",
     "start-windev": "nodemon --exec start-dev.sh",
     "start-dev-express": "nodemon server",
-    "heroku-postbuild": "node scripts/build.js"
+    "heroku-postbuild": "node scripts/build.js",
+    "postinstall": "npm run build"
   },
   "jest": {
     "collectCoverageFrom": [
